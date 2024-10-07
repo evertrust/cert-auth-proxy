@@ -45,7 +45,7 @@ containers:
     ports:
       - name: https-proxy
         # By default, cert-auth-proxy listens on port 443.
-        containerPort: 443
+        containerPort: 8443
     env:
       - name: UPSTREAM
         # This is the local address of the service.

@@ -26,7 +26,7 @@ subst_var "SSL_VERIFY_CLIENT" $SSL_VERIFY_CLIENT
 
 # Default listen address
 if [ -z "$LISTEN" ]; then
-    LISTEN="443"
+    LISTEN="8443"
 fi
 subst_var "LISTEN" $LISTEN
 

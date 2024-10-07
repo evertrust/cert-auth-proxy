@@ -32,11 +32,12 @@ if [ $loaded_certificates = 0 ]; then
     echo "No certificate has been found in $TRUSTED_CAS_LOOKUP_PATH/. This is incompatible with ssl_verify_client mode of $SSL_VERIFY_CLIENT. Please use optional_no_ca if you want to allow any CA to be used."
     exit 1
   fi
-  mv $TRUSTED_CAS_LOOKUP_PATH/dummy-root-ca.pem $TRUSTED_CAS_LOOKUP_PATH/ca-bundle.pem
 else
-  rm $TRUSTED_CAS_LOOKUP_PATH/dummy-root-ca.pem
   if [ $SSL_VERIFY_CLIENT = "optional_no_ca" ]; then
     entrypoint_log "Trusted CAs have been found in $TRUSTED_CAS_LOOKUP_PATH/ but ssl_verify_client is set to optional_no_ca. This is incompatible. Please use optional or on."
     exit 1
   fi
+
+  # If we have loaded certificates, we need to set the ssl_client_certificate directive
+  echo "ssl_client_certificate ${TRUSTED_CAS_LOOKUP_PATH}/ca-bundle.pem;" >> /etc/nginx/conf.d/trusted-ca-certs.conf
 fi
