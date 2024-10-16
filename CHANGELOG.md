@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.10...v0.1.11) (2024-10-16)
+
+
+### Bug Fixes
+
+* **ci:** setup buildx ([780ac53](https://github.com/evertrust/cert-auth-proxy/commit/780ac53434556c060b57e9380280ad62e55b262f))
+
 ## [0.1.10](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.9...v0.1.10) (2024-10-16)
 
 
