@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.8...v0.1.9) (2024-10-16)
+
+
+### Bug Fixes
+
+* **ci:** use makefile for docker builds ([6bec736](https://github.com/evertrust/cert-auth-proxy/commit/6bec736e7e58daf2f22f203bd4e3a66b0ce219ad))
+
 ## [0.1.8](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.8...v0.1.8) (2024-10-08)
 
 
