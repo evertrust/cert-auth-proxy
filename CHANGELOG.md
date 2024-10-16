@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.9...v0.1.10) (2024-10-16)
+
+
+### Bug Fixes
+
+* **ci:** fetch depth 0 ([30af5d4](https://github.com/evertrust/cert-auth-proxy/commit/30af5d4e7211a470038371f3188409dd30c4c1ef))
+
 ## [0.1.9](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.8...v0.1.9) (2024-10-16)
 
 
