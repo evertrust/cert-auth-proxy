@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.12](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.11...v0.1.12) (2026-08-12)
+
+
+### Miscellaneous Chores
+
+* release 0.1.12 ([0ae3bc3](https://github.com/evertrust/cert-auth-proxy/commit/0ae3bc3f19c61f0ec89b532d5e769fdd6bf2ef89))
+
 ## [0.1.11](https://github.com/evertrust/cert-auth-proxy/compare/v0.1.10...v0.1.11) (2024-10-16)
 
 
