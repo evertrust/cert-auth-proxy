@@ -1,9 +1,10 @@
-.PHONY: test docker-push docker-build get-version
+.PHONY: test docker-push docker-push-dated docker-build get-version
 
 GIT_CMD         = git
 DOCKER_CMD      = docker
 IMAGE_NAME      = registry.evertrust.io/cert-auth-proxy
 CURRENT_VERSION = $(shell ${MAKE} -s get-version)
+CURRENT_DATE    = $(shell date +%Y-%m-%d)
 DOCKER_PLATFORM = linux/amd64,linux/arm64
 
 
@@ -15,6 +16,9 @@ docker-build:
 
 docker-push:
 	docker buildx build --push --platform ${DOCKER_PLATFORM} -t ${IMAGE_NAME}:${CURRENT_VERSION} .
+
+docker-push-dated: ## Build and push the image tagged with the current date (YYYY-MM-DD)
+	docker buildx build --pull --push --platform ${DOCKER_PLATFORM} -t ${IMAGE_NAME}:${CURRENT_DATE} .
 	
 test: docker-build
 	@CONTAINER_ID=$$(docker run -d -p 8443:8443 -e UPSTREAM=example.org:443 -e SSL_VERIFY_CLIENT=optional -v $$(pwd)/test/dummy-certs:/var/cert-auth-proxy/certificates -v $$(pwd)/test/dummy-cas:/var/cert-auth-proxy/trusted-cas ${IMAGE_NAME}:${CURRENT_VERSION}); \
