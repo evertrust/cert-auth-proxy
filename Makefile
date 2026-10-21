@@ -9,7 +9,7 @@ DOCKER_PLATFORM = linux/amd64,linux/arm64
 
 
 get-version: ## Get the current version
-	@${GIT_CMD} describe --tags
+	@${GIT_CMD} describe --tags --match 'v*'
 
 docker-build:
 	docker buildx build --load -t ${IMAGE_NAME}:${CURRENT_VERSION} .

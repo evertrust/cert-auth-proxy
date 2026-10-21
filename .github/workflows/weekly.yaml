@@ -9,12 +9,18 @@ on:
 jobs:
   build:
     runs-on: ${{ vars.RUNS_ON }}
+    permissions:
+      contents: write
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Check out the repo
         uses: actions/checkout@v4
+
+      - name: Get the current date
+        id: date
+        run: echo "date=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
 
       - name: Log in to Docker registry
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
@@ -24,4 +30,18 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
-        run: make docker-push-dated
+        run: make docker-push-dated CURRENT_DATE=${{ steps.date.outputs.date }}
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          name: ${{ steps.date.outputs.date }}
+          target_commitish: ${{ github.sha }}
+          make_latest: false
+          body: |
+            Weekly rebuild of the image with the latest base image.
+
+            ```
+            registry.evertrust.io/cert-auth-proxy:${{ steps.date.outputs.date }}
+            ```
